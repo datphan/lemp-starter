@@ -20,10 +20,8 @@ WORKDIR $APP
 
 RUN docker-php-ext-install mysqli
 
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
 ADD ./run-prod.sh $APP/
 
-ADD html /usr/share/nginx/html/
+ADD src /usr/share/nginx/html/
 
 CMD ["sh", "run-prod.sh"]
