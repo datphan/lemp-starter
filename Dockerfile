@@ -4,7 +4,6 @@ LABEL authors="hoatle <hoatle@teracy.com>"
 
 RUN mkdir -p /opt/app
 
-RUN chmod +x docker-entrypoint.sh
 
 ENV TERM=xterm APP=/opt/app
 
