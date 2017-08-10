@@ -4,6 +4,8 @@ LABEL authors="hoatle <hoatle@teracy.com>"
 
 RUN mkdir -p /opt/app
 
+RUN chmod +x docker-entrypoint.sh
+
 ENV TERM=xterm APP=/opt/app
 
 # add more arguments from CI to the image so that `$ env` should reveal more info
@@ -24,4 +26,4 @@ ADD ./run-prod.sh $APP/
 
 ADD src /usr/share/nginx/html/
 
-CMD ["sh", "run-prod.sh"]
+CMD ["sh", "./run-prod.sh"]
