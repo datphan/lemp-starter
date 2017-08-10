@@ -20,7 +20,7 @@ WORKDIR $APP
 
 RUN docker-php-ext-install mysqli
 
-ADD run-prod.sh $APP/
+ADD ./run-prod.sh $APP/
 
 ADD html /usr/share/nginx/html/
 
