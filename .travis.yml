@@ -9,6 +9,8 @@ env:
     CI_BUILD_NUMBER: $TRAVIS_BUILD_NUMBER
     CI_BUILDER: travis-ci
     CI_PROJECT_NAME: $TRAVIS_REPO_SLUG
+    HEROKU_USER_NAME: _
+    HEROKU_REGISTRY: registry.heroku.com
 
 before_install:
   # install the latest docker and docker-compose versions
@@ -46,8 +48,14 @@ before_script:
 - export IMG_TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH | sed -e 's/[\/]/-/g' | sed -e 's/[\#]//g'; fi`
 - export APP_PROD_IMAGE=$CI_REGISTRY_IMAGE:$IMG_TAG
 
+- export HEROKU_IMAGE=$HEROKU_REGISTRY/$HEROKU_APP_NAME_PROD/web;
+- export HEROKU_API_KEY=$HEROKU_API_KEY_PROD;
+
 script:
 - docker-compose -f docker-compose.yml -f docker-compose.prod.yml build --force-rm --pull app-prod;
 after_success:
 - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
 - docker push $APP_PROD_IMAGE
+
+- docker login -u "$HEROKU_USER_NAME" -p "$HEROKU_API_KEY" $HEROKU_REGISTRY;
+- sh scripts/deploy_heroku.sh;
