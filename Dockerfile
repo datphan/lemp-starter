@@ -25,4 +25,4 @@ ADD ./run-prod.sh $APP/
 
 ADD src /usr/share/nginx/html/
 
-CMD ["sh", "./run-prod.sh"]
+CMD php-fpm
