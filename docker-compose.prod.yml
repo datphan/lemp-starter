@@ -28,6 +28,7 @@ services:
         CI_BUILD_TIME: ${CI_BUILD_TIME}
         CI_REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}
     image: ${APP_PROD_IMAGE:-datphan/demp:develop}
+    command: sh run-dev.sh
     working_dir: /opt/app
     volumes:
       - ./src:/var/www/html

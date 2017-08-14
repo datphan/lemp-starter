@@ -23,6 +23,3 @@ RUN docker-php-ext-install mysqli
 
 ADD src /usr/share/nginx/html/
 
-ADD run-prod.sh $APP/run-prod.sh
-
-CMD ["sh", "run-dev.sh"]
