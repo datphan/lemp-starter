@@ -27,9 +27,9 @@ services:
         CI_BUILD_TIME: ${CI_BUILD_TIME}
         CI_REGISTRY_IMAGE: ${CI_REGISTRY_IMAGE}
     image: ${APP_PROD_IMAGE:-acme101/lemp-starter:develop}
-    working_dir: /opt/app
     volumes:
-      - ./run-prod.sh:/opt/app/run-prod.sh
+      - ./src:/var/www/html
+      - ./run-dev.sh:/opt/app/run-dev.sh
     env_file:
       - .env-common
       - .env-prod
