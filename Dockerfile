@@ -21,8 +21,6 @@ WORKDIR $APP
 
 RUN docker-php-ext-install mysqli
 
-ADD ./run-prod.sh $APP/
-
 ADD src /usr/share/nginx/html/
 
 CMD php-fpm
