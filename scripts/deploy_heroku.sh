@@ -3,8 +3,6 @@
 set -e
 
 
-chmod 600 ~/.netrc # Heroku cli complains about permissions without this
-
 heroku whoami
 
 heroku config:get PORT
