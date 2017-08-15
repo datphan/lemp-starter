@@ -23,3 +23,6 @@ RUN docker-php-ext-install mysqli
 
 ADD src /usr/share/nginx/html/
 
+RUN adduser -D myuser
+
+USER myuser

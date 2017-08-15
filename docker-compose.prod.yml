@@ -7,13 +7,17 @@ services:
     environment:
       VIRTUAL_HOST: ${NGINX_PROD_VIRTUAL_HOST:-lemp.acme.dev, ~^lemp\..*\.xip\.io}
       HTTPS_METHOD: noredirect # support both http and https
+      NGINX_PORT: ${PORT}
+    working_dir: /opt/app
+    command: sh apply-env.sh
     depends_on:
       - app-prod
     links:
       - app-prod
     volumes:
-      - ./config/conf.d/default_prod.conf:/etc/nginx/conf.d/default.conf
+      - ./config/conf.d/default_prod.conf:/etc/nginx/conf.d/default.conf.tpl
       - ./src:/var/www/html
+      - ./apply-env.sh:/opt/app/apply-env.sh
     restart: unless-stopped
     network_mode: bridge
 
