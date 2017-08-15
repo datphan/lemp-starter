@@ -7,7 +7,6 @@ services:
     environment:
       VIRTUAL_HOST: ${NGINX_PROD_VIRTUAL_HOST:-lemp.acme.dev, ~^lemp\..*\.xip\.io}
       HTTPS_METHOD: noredirect # support both http and https
-      NGINX_PORT: ${PORT}
     working_dir: /opt/app
     command: sh apply-env.sh
     depends_on:
