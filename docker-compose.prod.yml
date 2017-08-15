@@ -42,5 +42,4 @@ services:
       - db
     links:
       - db
-      - nginx-prod
     network_mode: bridge
